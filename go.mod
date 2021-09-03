@@ -15,4 +15,6 @@ require (
 	github.com/stretchr/testify v1.4.0
 	github.com/subosito/gotenv v1.2.0
 	gopkg.in/go-playground/assert.v1 v1.2.1 // indirect
+	gorm.io/driver/mysql v1.1.2
+	gorm.io/gorm v1.21.14
 )

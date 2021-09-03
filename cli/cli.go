@@ -2,7 +2,6 @@ package cli
 
 import (
 	"context"
-	"fmt"
 	"net/http"
 	"os"
 	"os/signal"
@@ -10,8 +9,7 @@ import (
 	"syscall"
 
 	"github.com/rysmaadit/go-template/app"
-	"github.com/rysmaadit/go-template/router"
-	"github.com/rysmaadit/go-template/service"
+	"github.com/rysmaadit/go-template/handler"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -34,17 +32,17 @@ func (c *Cli) Run(application *app.Application) {
 		log.SetLevel(log.DebugLevel)
 	}
 
-	log.SetReportCaller(true)
+	// log.SetReportCaller(true)
 
-	srv := &http.Server{
-		Addr:    fmt.Sprintf(":%v", application.Config.AppPort),
-		Handler: router.NewRouter(service.InstantiateDependencies(application)),
-	}
+	// srv := &http.Server{
+	// 	Addr:    fmt.Sprintf(":%v", application.Config.AppPort),
+	// 	Handler: router.NewRouter(service.InstantiateDependencies(application)),
+	// }
 
-	log.Println(fmt.Sprintf("starting application { %v } on port :%v", application.Config.AppName, application.Config.AppPort))
-
-	go listenAndServe(srv)
-	waitForShutdown(srv)
+	// log.Println(fmt.Sprintf("starting application { %v } on port :%v", application.Config.AppName, application.Config.AppPort))
+	handler.MainCLI()
+	// go listenAndServe(srv)
+	// waitForShutdown(srv)
 }
 
 func listenAndServe(apiServer *http.Server) {

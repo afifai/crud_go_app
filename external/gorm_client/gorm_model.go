@@ -2,10 +2,11 @@ package gorm_client
 
 import "gorm.io/gorm"
 
-type Employee struct {
+type Movie struct {
 	gorm.Model
-	Name    string
-	Email   string
-	Address string
-	Age     int
+	Title       string `gorm:"size:255;not null"`
+	Slug        string `gorm:"size:255;not null;unique"`
+	Description string
+	Duration    int    `gorm:"size:5"`
+	Image       string `gorm:"size:255"`
 }
